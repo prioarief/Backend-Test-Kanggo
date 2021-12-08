@@ -1,7 +1,7 @@
 const { Order, Product, User } = require('../db/models');
 
-const create = async (payload) => {
-	return await Order.create(payload);
+const create = async (payload, t) => {
+	return await Order.create(payload, {transaction: t});
 };
 const update = async (payload) => {
 	return await Order.update(payload, { where: { id: payload.id } });
