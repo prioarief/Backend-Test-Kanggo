@@ -4,8 +4,8 @@ module.exports = {
     await queryInterface.createTable('Payments', {
       order_id: {
         allowNull: false,
+        type: Sequelize.INTEGER,
         primaryKey: true,
-        type: Sequelize.INTEGER
       },
       status: {
         allowNull: false,

@@ -5,7 +5,7 @@ const { createToken } = require('../utilities/jwt');
 
 const register = async (payload, res) => {
 	try {
-		const emailIsExist = await service.findOne({ email: value.email });
+		const emailIsExist = await service.findOne({ email: payload.email });
 		if (emailIsExist)
 			return wrapper(res, false, null, 'email is already exist', 400);
 		await service.create(payload);
