@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const { hash } = require('../utilities/bcrypt');
 const wrapper = require('../utilities/wrapper');
-const controller = require('../controller/user');
+const controller = require('../controllers/user');
 
 const register = async (req, res) => {
 	try {
@@ -28,4 +28,19 @@ const register = async (req, res) => {
 	}
 };
 
-module.exports = { register };
+const login = async (req, res) => {
+	try {
+		const schema = Joi.object({
+			email: Joi.string().email().required(),
+			password: Joi.string().required(),
+		});
+
+		const { error, value } = schema.validate(req.body);
+		if (error) return wrapper(res, false, null, error.message, 400);
+		return await controller.login(value, res);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+module.exports = { register, login };
