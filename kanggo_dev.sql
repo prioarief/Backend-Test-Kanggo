@@ -1,117 +1,194 @@
-/*
-SQLyog Professional v12.5.1 (64 bit)
-MySQL - 10.4.21-MariaDB : Database - kanggo_dev
-*********************************************************************
-*/
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 09, 2021 at 04:25 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 5.6.40
 
-/*!40101 SET NAMES utf8 */;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-/*!40101 SET SQL_MODE=''*/;
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`kanggo_dev` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-USE `kanggo_dev`;
+--
+-- Database: `kanggo_dev`
+--
 
-/*Table structure for table `orders` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `orders`;
+--
+-- Table structure for table `orders`
+--
 
 CREATE TABLE `orders` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `status` enum('pending','paid') NOT NULL DEFAULT 'pending',
-  `createdAt` datetime NOT NULL DEFAULT '2021-12-08 22:43:49',
-  `updatedAt` datetime NOT NULL DEFAULT '2021-12-08 22:43:49',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  `createdAt` datetime NOT NULL DEFAULT '2021-12-09 02:18:47',
+  `updatedAt` datetime NOT NULL DEFAULT '2021-12-09 02:18:47'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `orders` */
+--
+-- Dumping data for table `orders`
+--
 
-insert  into `orders`(`id`,`user_id`,`product_id`,`amount`,`status`,`createdAt`,`updatedAt`) values 
-(1,1,1,25000,'pending','2021-12-08 22:45:10','2021-12-08 22:45:10'),
-(2,1,1,25000,'pending','2021-12-08 22:50:22','2021-12-08 22:50:22'),
-(3,1,1,25000,'pending','2021-12-08 22:51:20','2021-12-08 22:51:20'),
-(5,1,1,25000,'pending','2021-12-08 22:55:03','2021-12-08 22:55:03');
+INSERT INTO `orders` (`id`, `user_id`, `product_id`, `amount`, `status`, `createdAt`, `updatedAt`) VALUES
+(1, 1, 1, 445000, 'paid', '2021-12-09 02:20:07', '2021-12-09 02:24:47');
 
-/*Table structure for table `payments` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `payments`;
+--
+-- Table structure for table `payments`
+--
 
 CREATE TABLE `payments` (
-  `order_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
   `amount` int(11) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT '2021-12-08 22:43:49',
-  `updatedAt` datetime NOT NULL DEFAULT '2021-12-08 22:43:49',
-  PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `createdAt` datetime NOT NULL DEFAULT '2021-12-09 02:18:47',
+  `updatedAt` datetime NOT NULL DEFAULT '2021-12-09 02:18:47'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `payments` */
+--
+-- Dumping data for table `payments`
+--
 
-/*Table structure for table `products` */
+INSERT INTO `payments` (`id`, `status`, `amount`, `createdAt`, `updatedAt`) VALUES
+(1, 'paid', 445000, '2021-12-09 02:24:47', '2021-12-09 02:24:47');
 
-DROP TABLE IF EXISTS `products`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
 
 CREATE TABLE `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `price` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT '2021-12-08 22:43:49',
-  `updatedAt` datetime NOT NULL DEFAULT '2021-12-08 22:43:49',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `createdAt` datetime NOT NULL DEFAULT '2021-12-09 02:18:47',
+  `updatedAt` datetime NOT NULL DEFAULT '2021-12-09 02:18:47'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `products` */
+--
+-- Dumping data for table `products`
+--
 
-insert  into `products`(`id`,`name`,`price`,`qty`,`createdAt`,`updatedAt`) values 
-(1,'Shampoo',5000,95,'2021-12-08 22:44:53','2021-12-08 22:55:03');
+INSERT INTO `products` (`id`, `name`, `price`, `qty`, `createdAt`, `updatedAt`) VALUES
+(1, 'Shampoo', 5000, 11, '2021-12-09 02:20:05', '2021-12-09 02:20:07');
 
-/*Table structure for table `sequelizemeta` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `sequelizemeta`;
+--
+-- Table structure for table `sequelizemeta`
+--
 
 CREATE TABLE `sequelizemeta` (
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`name`),
-  UNIQUE KEY `name` (`name`)
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `sequelizemeta` */
+--
+-- Dumping data for table `sequelizemeta`
+--
 
-insert  into `sequelizemeta`(`name`) values 
+INSERT INTO `sequelizemeta` (`name`) VALUES
 ('20211208154422-create-user.js'),
 ('20211208155107-create-order.js'),
 ('20211208155349-create-product.js'),
 ('20211208160406-create-payment.js');
 
-/*Table structure for table `users` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `users`;
+--
+-- Table structure for table `users`
+--
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT '2021-12-08 22:43:49',
-  `updatedAt` datetime NOT NULL DEFAULT '2021-12-08 22:43:49',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `createdAt` datetime NOT NULL DEFAULT '2021-12-09 02:18:47',
+  `updatedAt` datetime NOT NULL DEFAULT '2021-12-09 02:18:47'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `users` */
+--
+-- Dumping data for table `users`
+--
 
-insert  into `users`(`id`,`name`,`email`,`password`,`createdAt`,`updatedAt`) values 
-(1,'John Doe','JohnDoe@gmail.com','$2b$10$RHqWf28fKcWGcB/svb0xJOjCVpfSjMEAShtXR5OmFivd3kCvjcuJW','2021-12-08 22:44:31','2021-12-08 22:44:31');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt`) VALUES
+(1, 'John Doe', 'JohnDoe@gmail.com', '$2b$10$jeuGg5LnpyU9AcqXisJYDe.xEpd0dlCzzLtKsJqi8RKNDyQ3gj9Yi', '2021-12-09 02:20:00', '2021-12-09 02:20:00');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sequelizemeta`
+--
+ALTER TABLE `sequelizemeta`
+  ADD PRIMARY KEY (`name`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
