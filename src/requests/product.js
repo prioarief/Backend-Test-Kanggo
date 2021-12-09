@@ -16,6 +16,7 @@ const create = async (req, res) => {
 		return await controller.create(value, res);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const gets = async (req, res) => {
@@ -23,6 +24,7 @@ const gets = async (req, res) => {
 		return await controller.gets({}, res);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const get = async (req, res) => {
@@ -36,6 +38,7 @@ const get = async (req, res) => {
 		return await controller.get(value, res);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const destroy = async (req, res) => {
@@ -49,6 +52,7 @@ const destroy = async (req, res) => {
 		return await controller.destroy(value, res);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const update = async (req, res) => {
@@ -65,6 +69,7 @@ const update = async (req, res) => {
 		return await controller.update(value, res);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 

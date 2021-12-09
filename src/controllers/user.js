@@ -12,6 +12,7 @@ const register = async (payload, res) => {
 		return wrapper(res, true, 'register success', null, 201);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const login = async (payload, res) => {
@@ -26,6 +27,7 @@ const login = async (payload, res) => {
 		return wrapper(res, true, user, null, 200);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 

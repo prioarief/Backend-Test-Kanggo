@@ -19,7 +19,27 @@ const create = async (payload, res) => {
 	} catch (error) {
 		t.rollback()
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 
-module.exports = { create };
+const getAll = async (res) => {
+	try {
+		const payments = await service.findAll({})
+		return wrapper(res, true, payments, null, 200)
+	} catch (error) {
+		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
+	}
+}
+const get = async (payload, res) => {
+	try {
+		const payments = await service.findOne(payload)
+		return wrapper(res, true, payments, null, 200)
+	} catch (error) {
+		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
+	}
+}
+
+module.exports = { create, get, getAll };

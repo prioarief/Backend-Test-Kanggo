@@ -25,6 +25,7 @@ const register = async (req, res) => {
 		return await controller.register(value, res);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 
@@ -40,6 +41,7 @@ const login = async (req, res) => {
 		return await controller.login(value, res);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 

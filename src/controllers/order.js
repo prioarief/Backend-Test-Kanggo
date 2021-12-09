@@ -24,6 +24,7 @@ const create = async (payload, res) => {
 	} catch (error) {
 		transaction.rollback();
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const gets = async (payload, res) => {
@@ -32,6 +33,7 @@ const gets = async (payload, res) => {
 		return wrapper(res, true, orders, null, 200);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const get = async (payload, res) => {
@@ -41,6 +43,7 @@ const get = async (payload, res) => {
 		return wrapper(res, true, order, null, 200);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const update = async (payload, res) => {
@@ -49,6 +52,7 @@ const update = async (payload, res) => {
 		return wrapper(res, true, 'order successful updated', null, 200);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 

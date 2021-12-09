@@ -7,6 +7,7 @@ const create = async (payload, res) => {
 		return wrapper(res, true, 'product successful created', null, 201);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const gets = async (payload, res) => {
@@ -15,6 +16,7 @@ const gets = async (payload, res) => {
 		return wrapper(res, true, products, null, 200);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const get = async (payload, res) => {
@@ -24,6 +26,7 @@ const get = async (payload, res) => {
 		return wrapper(res, true, product, null, 200);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const destroy = async (payload, res) => {
@@ -34,6 +37,7 @@ const destroy = async (payload, res) => {
 		return wrapper(res, true, 'product successful deleted', null, 200);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 const update = async (payload, res) => {
@@ -42,6 +46,7 @@ const update = async (payload, res) => {
 		return wrapper(res, true, 'product successful updated', null, 200);
 	} catch (error) {
 		console.log(error);
+		return wrapper(res, false, null, "Server Error", 500)
 	}
 };
 
