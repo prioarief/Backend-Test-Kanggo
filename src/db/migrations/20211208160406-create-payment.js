@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Payments', {
-      order_id: {
+      id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         primaryKey: true,
